@@ -47,4 +47,3 @@ app.get('/home', function(request, response) {
 	}
 	response.end();
 });
-
