@@ -7,6 +7,7 @@ import { PORT } from "./config.js";
 import Routes from "./routes/Casos.routes.js";
 
 const app = express();
+
 app.use(express.json());
 app.use(
   cors({

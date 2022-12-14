@@ -157,6 +157,7 @@ create table NOTACOMPRA
  on update cascade 
   on delete cascade
 );
+
 create table DETALLECOMPRA
 (
  id int not null auto_increment,
