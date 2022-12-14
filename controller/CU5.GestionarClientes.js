@@ -25,11 +25,11 @@ export const getCliente = async (req, res) => {
 };
 export const createCliente = async (req, res) => {
   try {
-    const { nombre, apellido, ci,telefono, direccion} =
+    const { nombre, apellido, ci,telefono, direccion, fechaNacimiento} =
     req.body;
   const [result] = await pool.query(
-    "insert into CLIENTE( nombre, apellido, ci, telefono, direccion ) values(?,?,?,?,?)",
-    [ nombre, apellido, ci, telefono, direccion]
+    "insert into CLIENTE( nombre, apellido, ci, telefono, direccion, fechaNacimiento ) values(?,?,?,?,?,?)",
+    [ nombre, apellido, ci, telefono, direccion, fechaNacimiento]
   );
   res.json({
     id: result.insertId,
