@@ -68,7 +68,8 @@ export const storeUser = async (req, res) => {
 		if (result.length > 0) {
 			// return res.status(400).json({ message: "El usuario ya existe" });
 			// res.render('login/register', { error: 'Error: el usuario ya existe' });  //(login/register)-->ahi va la ubicacion de la pagina del formulario(vistas el html)
-			res.json({ message: "El usuario ya existe, redireccionando a: /login/register" });
+			// res.json({ message: "El usuario ya existe, redireccionando a: /login/register" });
+			console.log("El usuario ya existe, redireccionando a: /login/register");
 		} else {
 			const password = data.Password;
 			const encryptedPassword = await bcrypt.hash(password, 12)
@@ -93,7 +94,8 @@ export const storeUser = async (req, res) => {
 			});
 			req.session.loggedin = true;   //sesion logueada
 			req.session.name = data.name;
-			res.json({ message: "Sesion iniciada con exito" });
+			// res.json({ message: "Sesion iniciada con exito" });
+			console.log("Sesion iniciada con exito");
 		}
 		
 	} catch (error) {
