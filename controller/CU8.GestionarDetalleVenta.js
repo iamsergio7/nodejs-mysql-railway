@@ -10,7 +10,7 @@ export const getDetPedidos = async (req, res) => {
 };
 export const getDetPedido = async (req, res) => {
   try {
-    const [result] = await pool.query("select * from DETALLEVENTA where id=?", [
+    const [result] = await pool.query("select * from DETALLEVENTA  where idPedido=?", [
       req.params.id,
     ]);
     if (result.length === 0) {

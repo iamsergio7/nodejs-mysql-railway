@@ -55,28 +55,83 @@ import {
   obtenerIdPedido,
   obtenerIdProducto,
 } from "../controller/FuncionesExtras.js";
-
-
+ import{
+ getDetPedido,
+ getDetPedidos,
+ createDetPedido,
+ updateDetPedido,
+ deleteDetPedido,
+}from "../controller/CU8.GestionarDetalleVenta.js";
 import{
-  // login,
-  // register,
-  storeUser
-  // auth
-}from "../controller/CU1.IniciarSesion.js";
+ TotalDetalle,
+ TotalPorProducto,
+ obtenerCantidadProductos,
+}from "../controller/CU9.GestionarPedidoTotalDiario.js"
+import{
+ getEntrega,
+ getEntregas,
+ updateEntrega,
+ createEntrega,
+ deleteEntrega,
+}from "../controller/CU10.GestionarNotaEntrega.js"
+import{
+getProveedor,
+getProveedors,
+createProveedor,
+deleteProveedor,
+updateProveedor,
+}from "../controller/CU11.GestionarProveedor.js"
+import{
+getMateria,
+getMaterias,
+createMateria,
+deleteMateria,
+updateMateria,
+}from "../controller/CU12.GestionarMateriaPrima.js"
+import{
+getUnidad,
+getUnidades,
+createUnidad,
+updateUnidad,
+deleteUnidad,
+}from"../controller/CU14.GestionarUnidadMedida.js"
+import{
+getCompra,
+getCompras,
+deleteCompra,
+updateCompra,
+createCompra,
+}from"../controller/CU16.GestionarNotaCompra.js"
+import{
+getDetalleCompras,
+getDetalleCompra,
+deleteDetalleCompra,
+updateDetalleCompra,
+createDetalleCompra,
+}from"../controller/CU17.GestionarDetalleCompra.js"
+
+
+
+// import{
+//   // login,
+//   register,
+//   storeUser
+//   // auth
+// }from "../controller/CU1.IniciarSesion.js";
 
 // import{
 //   logout
 // }from "../controller/CU2.CerrarSesion.js";
 
 
-const router = Router();
+ const router = Router();
 
 
-/*---------login-registro----- */
+// /*---------login-registro----- */
 // router.get("/login", login);
 // router.post("/login", auth);
 // router.get("/register", register);
-router.post("/register", storeUser);
+// router.post("/register", storeUser);
 
 // /*--------cerrar sesion--------*/
 // router.get("/logout", logout);
@@ -85,13 +140,9 @@ router.post("/register", storeUser);
 
 /*---------Empleados-----------*/
 router.get("/empleado", getEmpleados);
-
 router.get("/empleado/:id", getEmpleado);
-
 router.post("/empleado", createEmpleado);
-
 router.put("/empleado/:id", updateEmpleado);
-
 router.delete("/empleado/:id", deleteEmpleado);
 
 /*-----------Usuarios-------------*/
@@ -134,9 +185,63 @@ router.get("/pedido", getPedidos);
 router.get("/pedido/:id", getPedido);
 router.post("/pedido", createPedido);
 router.put("/pedido/:id", updatePedido);
-router.delete("/v/:id", deletePedido);
+router.delete("/pedido/:id", deletePedido);
 
 /*-------pedido total-------*/
-router.get("/total", obtenerIdPedido);
+router.get("/totalDiario", obtenerIdPedido);
+router.get("/totalDiario", TotalPorProducto);
+router.get("/totalDiario", TotalDetalle);
+router.get("/totalDiario", obtenerCantidadProductos);
+
+/*--------Detalle de pedido----- */
+router.get("/DetallePedido", getDetPedidos);
+router.get("/DetallePedido/:id", getDetPedido);
+router.post("/DetallePedido", createDetPedido);
+router.put("/DetallePedido/:id", updateDetPedido);
+router.delete("/DetallePedido/:id", deleteDetPedido);
+
+/*----------Nota Entrega--------------- */
+router.get("/notaEntrega", getEntregas);
+router.get("/notaEntrega/:id", getEntrega);
+router.post("/notaEntrega", createEntrega);
+router.put("/notaEntrega/:id", updateEntrega);
+router.delete("/notaEntrega/:id", deleteEntrega);
+
+/*-------------Proveedor------------ */
+router.get("/proveedor", getProveedors);
+router.get("/proveedor/:id", getProveedor);
+router.post("/proveedor", createProveedor);
+router.put("/proveedor/:id", updateProveedor);
+router.delete("/proveedor/:id", deleteProveedor);
+
+/*---------Materia-------*/
+router.get("/materia", getMaterias);
+router.get("/materia/:id", getMateria);
+router.post("/materia", createMateria);
+router.put("/materia/:id", updateMateria);
+router.delete("/materia/:id", deleteMateria);
+
+/*------------unidad ------- */
+router.get("/unidad", getUnidades);
+router.get("/unidad/:id", getUnidad);
+router.post("/unidad", createUnidad);
+router.put("/unidad/:id", updateUnidad);
+router.delete("/unidad/:id", deleteUnidad);
+
+/*-------------compra-------------- */
+router.get("/compra", getCompras);
+router.get("/compra/:id", getCompra);
+router.post("/compra", createCompra);
+router.put("/compra/:id", updateCompra);
+router.delete("/compra/:id", deleteCompra);
+
+/*---------detalle compra--------- */
+router.get("/detCompra", getDetalleCompras);
+router.get("/detCompra/:id", getDetalleCompra);
+router.post("/detCompra", createDetalleCompra);
+router.put("/detCompra/:id",updateDetalleCompra);
+router.delete("/detCompra/:id", deleteDetalleCompra);
+
+
 
 export default router;

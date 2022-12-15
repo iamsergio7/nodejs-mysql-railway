@@ -11,3 +11,27 @@ export const TotalDetalle = async (req, res) => {
     return res.status(500).json({ message: error.message });
   }
 };
+export const TotalPorProducto = async (req, res) => {
+  try {
+    const [result] = await pool.query(
+      "select sum(cantidad * precio) from DETALLECOMPRA and PRODUCTO where fecha= CURDATE() and PRODUCTO.id=?", [
+        req.params.id,
+      ]
+    );
+    res.json(result);
+  } catch (error) {
+    return res.status(500).json({ message: error.message });
+  }
+};
+export const obtenerCantidadProductos= async (req, res) => {
+  try {
+    const [result] = await pool.query(
+      "select max(id) from PRODUCTO "
+    );
+    res.json(result);
+  } catch (error) {
+    return res.status(500).json({ message: error.message });
+  }
+};
+
+

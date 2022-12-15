@@ -8,10 +8,10 @@ export const getDetalleCompras = async (req, res) => {
     return res.status(500).json({ message: error.message });
   }
 };
-export const getUnidad = async (req, res) => {
+export const getDetalleCompra = async (req, res) => {
   try {
     const [result] = await pool.query(
-      "select * from DETALLECOMPRA where id=?",
+      "select * from DETALLECOMPRA where idNota=?",
       [req.params.id]
     );
     if (result.length === 0) {
