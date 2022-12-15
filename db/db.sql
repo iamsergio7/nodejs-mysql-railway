@@ -48,7 +48,7 @@ create table USUARIO
 (
  id int not null auto_increment , 
  login varchar(40) not null, 
- Password varchar(40) not null, 
+ Password varchar(100) not null, 
  idEmpleado int not null, 
  idRol int not null,
  primary key (id),
@@ -157,7 +157,6 @@ create table NOTACOMPRA
  on update cascade 
   on delete cascade
 );
-
 create table DETALLECOMPRA
 (
  id int not null auto_increment,
@@ -230,5 +229,44 @@ insert into PRODUCTO(nombre,precio,cantidad,descripcion) values
 ('pan mollete',3,1,'dulce');
 select * from PRODUCTO;
 
+insert into PEDIDO(detalle,fecha,fechaEntrega,total,idEmpleado,idCliente) values
+('sin detalle','2022/9/23','2022/9/24',50,1,1),
+('con mas queso','2022/9/21','2022/9/22',80,1,2),
+('sin detalle','2022/9/18','2022/9/20',60,1,3),
+('sin detalle','2022/9/23','2022/9/24',100,1,3);
+select * from PEDIDO;
 
+insert into DETALLEVENTA(idPedido,idProducto,cantidad,precioVenta) values
+(1,1,100,0.5),
+(2,2,80,1),
+(3,3,20,3),
+(4,3,20,3),
+(4,2,40,1);
+select * from DETALLEVENTA;
+
+insert into PROVEEDOR(nombre,apellido,direccion,telefono) values
+('Jose ','Claros','Santos dumont',3587459),
+('Abelardo','Choque','km 13',3587460),
+('Roberto','Mamani','La guardia',3587461),
+('Dayana','Maldonado','Grigotá',3587462),
+('Margarita','Alcazar','3er anillo',3587463);
+select * from PROVEEDOR ;
+
+insert into UNIDADMEDIDA(nombre , abreviatura) values
+('Kilogramos','Kg'),
+('Gramos','gr'),
+('Litro','L'),
+('Libras','Lb'),
+('Unidad','U');
+select * from UNIDADMEDIDA;
+
+insert into MATERIA(nombre, stock, stockMinimo, fechaVencimiento, idUnidad) values
+('Harina',50,10,'2022/12/12',1),
+('Huevo',46,10,'2022/12/12',5),
+('Mantequilla',19,5,'2022/12/25',1),
+('Levadura',3,1,'2023/01/01',1),
+('Azucar',40,10,'2023/01/05',1),
+('Queso',15,2,'2022/12/12',1),
+('Leche',59,10,'2022/09/30',3);
+select * from MATERIA;
 

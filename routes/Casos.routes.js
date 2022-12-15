@@ -58,27 +58,28 @@ import {
 
 
 import{
-  login,
-  register,
-  storeUser,
-  auth,
+  // login,
+  // register,
+  storeUser
+  // auth
 }from "../controller/CU1.IniciarSesion.js";
 
-import{
-  logout,
-}from "../controller/CU2.CerrarSesion.js";
+// import{
+//   logout
+// }from "../controller/CU2.CerrarSesion.js";
+
 
 const router = Router();
 
 
 /*---------login-registro----- */
-router.get("/login", login);
-router.post("/login", auth);
-router.get("/register", register);
+// router.get("/login", login);
+// router.post("/login", auth);
+// router.get("/register", register);
 router.post("/register", storeUser);
 
-/*--------cerrar sesion--------*/
-router.get("/logout", logout);
+// /*--------cerrar sesion--------*/
+// router.get("/logout", logout);
 
 
 
