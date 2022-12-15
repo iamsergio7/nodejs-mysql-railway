@@ -82,7 +82,7 @@ export const storeUser = async (req, res) => {
 					"idRol": req.body.idRol
 				}
 	
-				const [result] = await pool.query(
+				await pool.query(
 					"insert into USUARIO(login, Password, idEmpleado, idRol ) values(?,?,?,?)",
 					[ users.login, users.Password, users.idEmpleado, users.idRol]  
 				);
