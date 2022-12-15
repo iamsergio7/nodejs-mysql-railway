@@ -71,31 +71,34 @@ export const storeUser = async (req, res) => {
 			// res.json({ message: "El usuario ya existe, redireccionando a: /login/register" });
 			console.log("El usuario ya existe, redireccionando a: /login/register");
 		} else {
-			const password = data.Password;
-			const encryptedPassword = await bcrypt.hash(password, 12)
-			let users = {
-				"login": req.body.login,
-				"Password": encryptedPassword,
-				"idEmpleado": req.body.idEmpleado,
-				"idRol": req.body.idRol
+			try{
+
+				const password = data.Password;
+				const encryptedPassword = await bcrypt.hash(password, 12)
+				let users = {
+					"login": req.body.login,
+					"Password": encryptedPassword,
+					"idEmpleado": req.body.idEmpleado,
+					"idRol": req.body.idRol
+				}
+	
+				const [result] = await pool.query(
+					"insert into USUARIO(login, Password, idEmpleado, idRol ) values(?,?,?,?)",
+					[ users.login, users.Password, users.idEmpleado, users.idRol]  
+				);
+				
+				req.session.loggedin = true;   //sesion logueada
+				req.session.name = data.name;
+				// res.json({ message: "Sesion iniciada con exito" });
+				console.log("Sesion iniciada con exito");
+
+
+
 			}
-
-
-			const [result] = await pool.query(
-                "insert into USUARIO(login, Password, idEmpleado, idRol ) values(?,?,?,?)",
-                [ users.login, users.Password, users.idEmpleado, users.idRol]  
-            );
-			res.json({
-				id: result.insertId,
-				login: users.login, 
-				Password:users.Password, 
-				idEmpleado: users.idEmpleado, 
-				idRol:users.idRol
-			});
-			req.session.loggedin = true;   //sesion logueada
-			req.session.name = data.name;
-			// res.json({ message: "Sesion iniciada con exito" });
-			console.log("Sesion iniciada con exito");
+			catch(error){
+				// return res.status(500).json({ message: error.message });
+				console.log(error);
+			}
 		}
 		
 	} catch (error) {
