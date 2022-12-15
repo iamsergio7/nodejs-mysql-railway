@@ -1,5 +1,5 @@
-// import { pool } from "../db/db.js";
-// import bcrypt from 'bcrypt'
+import { pool } from "../db/db.js";
+import bcrypt from 'bcrypt'
 
 
 // export const login = async (req, res) => {
